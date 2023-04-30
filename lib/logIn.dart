@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:news/DivertPage.dart';
 import 'package:news/homePage.dart';
 import 'package:news/signIn.dart';
 
@@ -17,7 +18,7 @@ class LogIn extends StatelessWidget {
           if (snapshot.hasData) {
             return homePage();
           }
-          return SignIn();
+          return DivertPage();
         },
       ),
     );

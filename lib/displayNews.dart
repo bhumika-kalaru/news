@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:news/specificNews.dart';
 import 'addNews.dart';
 import 'constants.dart';
+import 'package:share_plus/share_plus.dart';
 
 class DisplayNews extends StatefulWidget {
   const DisplayNews({Key? key}) : super(key: key);
@@ -102,18 +103,12 @@ class _DisplayNewsState extends State<DisplayNews> {
                 ),
               ),
               IconButton(
-                  onPressed: () {
-                    setState(() {
-
-                      final doc = FirebaseFirestore.instance
-                          .collection('News')
-                          .doc(n.id);
-                      doc.delete();
-                    });
+                  onPressed: () async{
+                    await Share.share(n.description);
                   },
                   icon: Icon(
-                    Icons.close,
-                    color: Colors.red,
+                    Icons.share,
+                    // color: Colors.red,
                   )),
             ],
           ),

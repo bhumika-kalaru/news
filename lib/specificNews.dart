@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,6 +35,17 @@ class specificNewsInfo extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+
+          final doc = FirebaseFirestore.instance
+              .collection('News')
+              .doc(news.id);
+          doc.delete();
+          Navigator.pop(context);
+        },
+        child: Icon(Icons.close),
       ),
     );
     ;
