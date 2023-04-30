@@ -59,37 +59,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               controller: emailController,
               decoration: InputDecoration(hintText: "Email"),
             ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.end,
-            //   children: [
-            //     GestureDetector(
-            //       child: Container(
-            //         margin: EdgeInsets.only(top: h / 80),
-            //         child: Text(
-            //           "send otp",
-            //           style: GoogleFonts.openSans(
-            //               color: blue, fontWeight: FontWeight.w700),
-            //         ),
-            //       ),
-            //       onTap: () {},
-            //     )
-            //   ],
-            // ),
-            // TextFormField(
-            //   controller: otpController,
-            //   decoration: InputDecoration(
-            //     hintText: "OTP",
-            //   ),
-            // ),
-            // Container(
-            //   margin: EdgeInsets.symmetric(vertical: h / 60),
-            //   child: TextFormField(
-            //     controller: newPasswordController,
-            //     decoration: InputDecoration(
-            //       hintText: "New Password",
-            //     ),
-            //   ),
-            // ),
             GestureDetector(
               onTap: (() {
                 ResetPassword();
