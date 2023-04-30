@@ -1,5 +1,6 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:news/displayNews.dart';
 import 'package:news/signIn.dart';
 import '../constants.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +68,7 @@ class _SignUpState extends State<SignUp> {
                 signUp();
                 Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => homePage()),
+                  MaterialPageRoute(builder: (context) => DisplayNews()),
                       (Route<dynamic> route) => false,
                 );
               });

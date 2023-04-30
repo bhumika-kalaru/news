@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:news/logIn.dart';
 import 'package:news/specificNews.dart';
 import 'addNews.dart';
 import 'constants.dart';
@@ -22,7 +24,23 @@ class _DisplayNewsState extends State<DisplayNews> {
      h = MediaQuery.of(context).size.height;
         w = MediaQuery.of(context).size.width;
     return Scaffold(
+      drawer: Drawer(
+          child: ListView(children: [
+            ListTile(
+            tileColor: white,
+            title: Center(child: Text('Logout')),
+            onTap: () async {
+      await FirebaseAuth.instance.signOut();
+      Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => LogIn()),
+      (Route<dynamic> route) => false,
+      );
+      },
+
+          ),],)),
       appBar: AppBar(
+
         backgroundColor: blue,
         title: Text('News'),
         centerTitle: true,
@@ -41,12 +59,13 @@ class _DisplayNewsState extends State<DisplayNews> {
             width: 5,
           )
         ],
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Icon(Icons.arrow_back_ios),
-        ),
+
+        // leading: GestureDetector(
+        //   onTap: () {
+        //     Navigator.pop(context);
+        //   },
+        //   child: Icon(Icons.arrow_back_ios),
+        // ),
       ),
       body: Stack(
         children: [

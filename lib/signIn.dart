@@ -1,3 +1,5 @@
+import 'package:news/displayNews.dart';
+
 import 'constants.dart';
 import 'signUp.dart';
 import 'verify.dart';
@@ -88,7 +90,7 @@ class _SignInState extends State<SignIn> {
                         password: passwordController.text);
                     Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(builder: (context) => homePage()),
+                      MaterialPageRoute(builder: (context) => DisplayNews()),
                           (Route<dynamic> route) => false,
                     );
                   } on FirebaseAuthException catch (e) {
