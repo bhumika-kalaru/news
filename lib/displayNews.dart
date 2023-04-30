@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:news/addNews.dart';
 import 'package:news/specificNews.dart';
+import 'addNews.dart';
 import 'constants.dart';
 
 class DisplayNews extends StatefulWidget {
@@ -12,9 +12,14 @@ class DisplayNews extends StatefulWidget {
   State<DisplayNews> createState() => _DisplayNewsState();
 }
 
+late double h,w;
+
 class _DisplayNewsState extends State<DisplayNews> {
   @override
   Widget build(BuildContext context) {
+
+     h = MediaQuery.of(context).size.height;
+        w = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: blue,
@@ -69,9 +74,9 @@ class _DisplayNewsState extends State<DisplayNews> {
     );
   }
 
-  Widget buildUser(News news) => GestureDetector(
+  Widget buildUser(News n) => GestureDetector(
     child: Container(
-      height: 100,
+      // height: 100,
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
           color: white,
@@ -82,9 +87,35 @@ class _DisplayNewsState extends State<DisplayNews> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text(
-            news.description,
-            style: GoogleFonts.openSans(),
+          Row(
+            children: [
+              Container(
+                width: w*0.75,
+                child: Center(
+                  child: Text(
+                    n.description,
+                    style: GoogleFonts.gabriela(
+                      fontSize: 20,
+
+                    ),
+                  ),
+                ),
+              ),
+              IconButton(
+                  onPressed: () {
+                    setState(() {
+
+                      final doc = FirebaseFirestore.instance
+                          .collection('News')
+                          .doc(n.id);
+                      doc.delete();
+                    });
+                  },
+                  icon: Icon(
+                    Icons.close,
+                    color: Colors.red,
+                  )),
+            ],
           ),
         ],
       ),
@@ -94,7 +125,7 @@ class _DisplayNewsState extends State<DisplayNews> {
           context,
           MaterialPageRoute(
               builder: (context) =>
-                  specificNewsInfo(description:news.description)));
+                  specificNewsInfo(news: n)));
     },
   );
   Stream<List<News>> readUsers() => FirebaseFirestore.instance
@@ -104,21 +135,3 @@ class _DisplayNewsState extends State<DisplayNews> {
       snapshot.docs.map((doc) => News.fromJson(doc.data())).toList());
 
 }
-
-class News {
-  late String id;
-  final String description;
-  // final DateTime date;
-  News({this.id = '', required this.description });
-
-  Map<String, dynamic> toJson() => {
-    'id': id,
-    'description': description,
-    // 'date':date,
-  };
-  static News fromJson(Map<String, dynamic> json) => News(
-    id: json['id'],
-    // date: json['date'],
-    description: json['description'],);
-}
-

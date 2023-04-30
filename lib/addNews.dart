@@ -24,7 +24,8 @@ class _AddNewsState extends State<AddNews> {
           GestureDetector(
             child: Icon(Icons.check),
             onTap: () {
-              createNews(descript: descontroller.text,date: _dateTime);
+              createNews(descript: descontroller.text);
+              //,date: _dateTime
               Navigator.push(context, MaterialPageRoute(builder: (context)=>DisplayNews()));
             },
           ),
@@ -93,12 +94,13 @@ class _AddNewsState extends State<AddNews> {
       snapshot.docs.map((doc) => News.fromJson(doc.data())).toList());
 
   Future createNews(
-      {required String descript,required DateTime date}) async {
+      {required String descript}) async {
+    //,required DateTime date
     final docNews = FirebaseFirestore.instance.collection('News').doc();
     final news = News(
       id: docNews.id,
       description: descript,
-      date: date,
+      // date: date,
     );
     final json = news.toJson();
     await docNews.set(json);
@@ -108,16 +110,16 @@ class _AddNewsState extends State<AddNews> {
 class News {
   late String id;
   final String description;
-  final DateTime date;
-  News({this.id = '', required this.description,required this.date });
-
+  // final DateTime date;
+  News({this.id = '', required this.description, });
+  //required this.date
   Map<String, dynamic> toJson() => {
     'id': id,
     'description': description,
-    'date':date,
+    // 'date':date,
   };
   static News fromJson(Map<String, dynamic> json) => News(
     id: json['id'],
-    date: json['date'],
+    // date: json['date'],
     description: json['description'],);
 }
