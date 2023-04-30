@@ -1,10 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:news/AddNews.dart';
+import 'package:news/calender.dart';
 
 import 'constants.dart';
 import 'logIn.dart';
 
-class homePage extends StatelessWidget {
+class homePage extends StatefulWidget {
+  @override
+  State<homePage> createState() => _homePageState();
+}
+
+class _homePageState extends State<homePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,17 +29,16 @@ class homePage extends StatelessWidget {
                 );
               },
               icon: Icon(Icons.logout))],
-          leading: GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-
-            child: Icon(Icons.arrow_back),
-          )),
-      body: Container(
-        child: Center(
-          child: Text("hello")
+          ),
+      body: GestureDetector(
+        child: Container(
+          child: Center(
+            child: Text("hello")
+          ),
         ),
+        onTap: (){
+          // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddNews()));
+        },
       ),
     );
   }
