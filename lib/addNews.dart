@@ -54,30 +54,30 @@ class _AddNewsState extends State<AddNews> {
                 ),
               ),
             ),
-            Container(
-              height: 90,
-              width: 500,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                child: Center(
-                    child: GestureDetector(
-                      onTap: ()async {
-                        DateTime? _newdate = await showDatePicker(
-                            context: context,
-                            initialDate: _dateTime,
-                            firstDate: DateTime(1800),
-                            lastDate: DateTime(3000));
-                        if (_newdate != null) {
-                          setState(() {
-                            _dateTime = _newdate;
-                          });
-                        }
-                      },
-                      child: Text("Add Date"),
-                    )
-                ),
-              ),
-            ),
+            // Container(
+            //   height: 90,
+            //   width: 500,
+            //   child: Padding(
+            //     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+            //     child: Center(
+            //         child: GestureDetector(
+            //           onTap: ()async {
+            //             DateTime? _newdate = await showDatePicker(
+            //                 context: context,
+            //                 initialDate: _dateTime,
+            //                 firstDate: DateTime(1800),
+            //                 lastDate: DateTime(3000));
+            //             if (_newdate != null) {
+            //               setState(() {
+            //                 _dateTime = _newdate;
+            //               });
+            //             }
+            //           },
+            //           child: Text("Add Date"),
+            //         )
+            //     ),
+            //   ),
+            // ),
             SizedBox(
               height: 18,
             )
