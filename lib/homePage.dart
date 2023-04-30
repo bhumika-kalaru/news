@@ -32,8 +32,13 @@ class homePage extends StatelessWidget {
             },
             child: Icon(Icons.arrow_back),
           )),
-      body: Container(
-        child: DisplayNews()
+      body: Center(
+        child: GestureDetector(
+          child: ElevatedButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>DisplayNews()));
+
+          },child: Text("News"),)
+        ),
       ),
     );
   }
